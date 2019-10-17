@@ -95,8 +95,12 @@ export default function Login() {
               autoComplete='current-password'
             />
             <FormControlLabel
-              control={<Checkbox value='remember' color='primary' />}
-              label='Remember me'
+              control={<Checkbox value='client' color='primary' />}
+              label='client'
+            />
+            <FormControlLabel
+              control={<Checkbox value='instructor' color='primary' />}
+              label='instructor'
             />
             <Button
               type='submit'
