@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Axios from 'axios';
 
 function Copyright() {
   return (
@@ -56,8 +57,32 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Login() {
+export default function Login(props) {
+  const [loginData, setLoginData] = useState({
+    username: '',
+    password: ''
+  });
   const classes = useStyles();
+
+  const changeHandler = e => {
+    setLoginData({
+      ...loginData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const submitHandler = e => {
+    Axios.post('http://localhost:5000/login', loginData)
+      .then(res => {
+        localStorage.setItem('token', res.data.payload);
+        setLoginData({
+          username: '',
+          password: ''
+        });
+        props.history.push('/placeholder'); /* fill in place holder!!! */
+      })
+      .catch(err => console.error(err));
+  };
 
   return (
     <Grid container component='main' className={classes.root}>
@@ -71,16 +96,18 @@ export default function Login() {
           <Typography component='h1' variant='h5'>
             Anywhere Fitness Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form onSubmit={submitHandler} className={classes.form} noValidate>
             <TextField
               variant='outlined'
               margin='normal'
               required
               fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
+              id='username'
+              label='User Name'
+              name='username'
+              autoComplete='username'
+              onChange={changeHandler}
+              value={loginData.username}
               autoFocus
             />
             <TextField
@@ -92,6 +119,8 @@ export default function Login() {
               label='Password'
               type='password'
               id='password'
+              value={loginData.password}
+              onChange={changeHandler}
               autoComplete='current-password'
             />
             <FormControlLabel
