@@ -72,8 +72,10 @@ export default function Login(props) {
   };
 
   const submitHandler = e => {
+    e.preventDefault();
     Axios.post('http://localhost:5000/login', loginData)
       .then(res => {
+        console.log(res, loginData);
         localStorage.setItem('token', res.data.payload);
         setLoginData({
           username: '',
