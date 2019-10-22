@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
+import {NavLink} from 'react-router-dom';
+import useReactRouter from 'use-react-router'
 
 function Copyright() {
   return (
@@ -58,6 +60,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
+  const{history,location,match}=useReactRouter()
   const [loginData, setLoginData] = useState({
     username: '',
     password: ''
@@ -66,22 +69,22 @@ export default function Login(props) {
 
   const changeHandler = e => {
     setLoginData({
-      ...loginData,
+      ...loginData, 
       [e.target.name]: e.target.value
     });
   };
 
   const submitHandler = e => {
     e.preventDefault();
-    Axios.post('http://localhost:5000/api/auth/login', loginData)
+    Axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginData)
       .then(res => {
         console.log(res, loginData);
-        localStorage.setItem('token', res.data.payload);
+        localStorage.setItem('token', JSON.stringify(res.data.user.token));
         setLoginData({
           username: '',
           password: ''
         });
-        props.history.push('/placeholder'); /* fill in place holder!!! */
+       history.push('/Dashboard'); /* fill in place holder!!! */
       })
       .catch(err => console.error(err));
   };
@@ -145,9 +148,9 @@ export default function Login(props) {
             <Grid container>
               <Grid item xs></Grid>
               <Grid item>
-                <Link href='#' variant='body2'>
+                <NavLink to='/register' variant='body2'>
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </NavLink>
               </Grid>
             </Grid>
             <Box mt={5}>
