@@ -72,6 +72,7 @@ function Register(props) {
       .post(`https://lambda-anywhere-fitness.herokuapp.com/api/auth/register/`, userObject)
       .then((res) => {
         const userInfo = JSON.stringify(res.data.user.token); 
+      console.log(res)
         localStorage.setItem("token", userInfo);
         history.push("/dashboard")
       })
