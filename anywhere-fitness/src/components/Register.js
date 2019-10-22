@@ -86,7 +86,6 @@ function Register(props) {
         // const userInfo = JSON.stringify(res.data.user.token);
         console.log(res);
         localStorage.setItem('token', res.data.token);
-
         history.push('/dashboard');
       })
       .catch(error => {
