@@ -16,6 +16,8 @@ import Axios from 'axios';
 import {NavLink} from 'react-router-dom';
 import useReactRouter from 'use-react-router'
 
+ 
+
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
@@ -79,7 +81,7 @@ export default function Login(props) {
     Axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginData)
       .then(res => {
         console.log(res, loginData);
-        localStorage.setItem('token', JSON.stringify(res.data.user.token));
+        localStorage.setItem('token', JSON.stringify(res.data.token));
         setLoginData({
           username: '',
           password: ''
