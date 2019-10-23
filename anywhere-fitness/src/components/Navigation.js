@@ -1,12 +1,17 @@
 import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import Dashboard from '../components/Dashboard'
-import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
+import Logout from '../components/Logout'
 
 const Navigation=() => {
-  return (
-    <Link to="/dashboard">Dashboard</Link>
 
+  return (
+    <>
+
+      <Route path="/logout" component={Logout} />
+      <Link to="/dashboard">Dashboard</Link>
+      <Link to="/logout" >logout</Link>
+
+    </>
   );
 }
 export default Navigation;  
