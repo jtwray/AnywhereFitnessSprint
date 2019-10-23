@@ -62,6 +62,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
+  const { initialUserState }=props
+
+const setauthduser=(data)=>{
+  setauthUser(data)
+  return console.log(authUser) 
+}
+  const [authUser, setauthUser] = useState(initialUserState);
+
   const { history, location, match } = useReactRouter();
   const [loginData, setLoginData] = useState({
     username: '',
@@ -85,6 +93,9 @@ export default function Login(props) {
       .then(res => {
         console.log(res, loginData);
         localStorage.setItem('token', JSON.stringify(res.data.token));
+       setauthUser(res.data.user)
+     console.log(authUser)
+      
         setLoginData({
           username: '',
           password: ''
