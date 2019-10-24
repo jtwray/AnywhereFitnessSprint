@@ -60,6 +60,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
+  const {user,setUser}=props
   const{history,location,match}=useReactRouter()
   const [loginData, setLoginData] = useState({
     username: '',
@@ -80,11 +81,18 @@ export default function Login(props) {
       .then(res => {
         console.log(res, loginData);
         localStorage.setItem('token', JSON.stringify(res.data.user.token));
+        localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+        
+
         setLoginData({
           username: '',
           password: ''
         });
-       history.push('/Dashboard'); /* fill in place holder!!! */
+        setUser(res.data.user)
+        console.log('res.data.user:',res.data.user)
+        
+
+       history.push('/dashboard'); /* fill in place holder!!! */
       })
       .catch(err => console.error(err));
   };

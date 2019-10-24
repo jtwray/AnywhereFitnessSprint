@@ -6,12 +6,13 @@ const Navigation=() => {
 
   return (
     <>
-
-      <Route path="/logout" component={Logout} />
       <Link to="/dashboard">Dashboard</Link>
       <Link to="/logout" >logout</Link>
-
+      <Link to='/instructor'>Instructor</Link>
+<Link to='/classlist/createclass'>create class</Link>
     </>
   );
 }
 export default Navigation;  
+
+
