@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Register(props) {
-  const { history, location, match } = useReactRouter();
+  const { history } = useReactRouter();
   const classes = useStyles();
   const initialUserState = {
     username: '',

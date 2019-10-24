@@ -16,8 +16,6 @@ import Axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import useReactRouter from 'use-react-router';
 
- 
-
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
@@ -62,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
-  const { history, location, match } = useReactRouter();
+  const { history } = useReactRouter();
   const [loginData, setLoginData] = useState({
     username: '',
     password: ''
