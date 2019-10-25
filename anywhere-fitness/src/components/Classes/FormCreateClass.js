@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {axiosWithAuth} from '../../utils/axiosWithAuth';
+import Navigation from './../Navigation';
 
 
 export const FormCreateClass=( {classList, setClassList} ) => {
@@ -27,17 +28,20 @@ export const FormCreateClass=( {classList, setClassList} ) => {
     const resetForm=() => {
         setNewClass( initialClassFields );
     }
+    let responseData
  
     const handleSubmit=( event ) => {
         event.preventDefault();
     axiosWithAuth().post(`/classes`,newClass)
+    .then((response)=>{responseData=response.data})
+    .then(()=>{console.log('responseData:',responseData)})
         setClassList( [...classList, newClass] );
         console.log( classList );
         resetForm();
     }
     return (
         <>
-
+  <Navigation/>
             <form onSubmit={handleSubmit}>
                 <label >Classname
                 <input
@@ -48,11 +52,6 @@ export const FormCreateClass=( {classList, setClassList} ) => {
 
                 </label>
 
-                <input
-                    name="instructorId"
-                    placeholder="Class type"
-                    onChange={handleChange}
-                    value={newClass.instructorId||""} />
 
                 <input
                     name="scheduleTime"

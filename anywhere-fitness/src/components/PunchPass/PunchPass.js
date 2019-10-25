@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {InstructorCard} from "../Instructor/InstructorCard"
+import Navigation from './../Navigation';
 
   export const Instructor=()=>{
                 
@@ -22,6 +23,7 @@ const [instructor,setInstructor]=useState(initialInstructorState)
 
     return(
         <>
+          <Navigation/>
         <InstructorCard instructor={instructor} classList={classList} setClassList={setClassList} />
         </>
     )

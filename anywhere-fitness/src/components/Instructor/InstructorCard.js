@@ -18,6 +18,7 @@ export  const InstructorCard=()=>{
     return(
         <>
         <div>
+            
            InstructorCard
             </div>
         </>
