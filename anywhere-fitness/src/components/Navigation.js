@@ -89,8 +89,12 @@ export default function Dashboard(props) {
           aria-label='scrollable force tabs example'
         >
           <Tab label='Home' icon={<PhoneIcon />} {...a11yProps(0)} />
-          <Tab label='Item Two' icon={<FavoriteIcon />} {...a11yProps(1)} />
-          <Tab label='Item Three' icon={<PersonPinIcon />} {...a11yProps(2)} />
+          <Tab label='Instructor' icon={<FavoriteIcon />} {...a11yProps(1)} />
+          <Tab
+            label='Create Class'
+            icon={<PersonPinIcon />}
+            {...a11yProps(2)}
+          />
           <Tab label='Log Out' icon={<HelpIcon />} {...a11yProps(3)} />
         </Tabs>
       </AppBar>
@@ -98,10 +102,10 @@ export default function Dashboard(props) {
         Item One
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <Link to='/instructor'>Instructor</Link>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <Link to='/classlist/createclass'>create class</Link>
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Link to='/logout'>logout</Link>
