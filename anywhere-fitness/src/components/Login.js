@@ -77,7 +77,7 @@ export default function Login( props ) {
     Axios.post( 'https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginData )
     .then( res => {
         console.log( res, loginData );
-        localStorage.setItem( 'token', JSON.stringify( res.data.user.token ) );
+        localStorage.setItem( 'token', JSON.stringify( res.data.token ) );
         localStorage.setItem( 'currentUser', JSON.stringify( res.data.user ) );
         setLoginData( {username: '',password:'',})
         let resultData=res;
@@ -86,9 +86,7 @@ export default function Login( props ) {
         history.push( '/dashboard' )}) /* fill in place holder!!! */
          .then(()=>setWelcome(resultData.message))
       
-      .catch( err => console.error( err ) );
-  };
-
+      .catch( err => console.error( err ) );}
   return (
     <Grid container component='main' className={classes.root}>
       <CssBaseline />
