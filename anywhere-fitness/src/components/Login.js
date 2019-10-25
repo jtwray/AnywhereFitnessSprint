@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,10 +11,10 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
-import {NavLink} from 'react-router-dom';
-import useReactRouter from 'use-react-router'
+import { NavLink } from 'react-router-dom';
+import useReactRouter from 'use-react-router';
 
 function Copyright() {
   return (
@@ -29,7 +29,7 @@ function Copyright() {
   );
 }
 
-const useStyles=makeStyles( theme => ( {
+const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh'
   },
@@ -41,52 +41,60 @@ const useStyles=makeStyles( theme => ( {
     backgroundPosition: 'center'
   },
   paper: {
-    margin: theme.spacing( 8, 4 ),
+    margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
   },
   avatar: {
-    margin: theme.spacing( 1 ),
+    margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing( 1 )
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing( 3, 0, 2 )
+    margin: theme.spacing(3, 0, 2)
   }
-} ) );
+}));
 
-export default function Login( props ) {
-  const {user, setUser,setWelcome}=props
-  const {history}=useReactRouter()
-  const [loginData, setLoginData]=useState( {
+export default function Login(props) {
+  const { user, setUser, setWelcome } = props;
+  const { history } = useReactRouter();
+  const [loginData, setLoginData] = useState({
     username: '',
     password: ''
-  } );
-  const classes=useStyles();
+  });
+  const classes = useStyles();
 
-  const changeHandler=e => {
-    setLoginData( {...loginData,[e.target.name]: e.target.value } );
+  const changeHandler = e => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
   let resultData;
-  const submitHandler=e => {
+  const submitHandler = e => {
     e.preventDefault();
-    Axios.post( 'https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginData )
-    .then( res => {
-        console.log( res, loginData );
-        localStorage.setItem( 'token', JSON.stringify( res.data.token ) );
-        localStorage.setItem( 'currentUser', JSON.stringify( res.data.user ) );
-        setLoginData( {username: '',password:'',})
-        let resultData=res;
-        setUser( res.data.user )
-        console.log( 'res.data.user:', res.data.user )
-        history.push( '/dashboard' )}) /* fill in place holder!!! */
-         .then(()=>setWelcome(resultData.message))
-      
-      .catch( err => console.error( err ) );}
+
+    Axios.post(
+      'https://lambda-anywhere-fitness.herokuapp.com/api/auth/login',
+      loginData
+    )
+      .then(res => {
+        console.log(res, loginData);
+        localStorage.setItem('token', JSON.stringify(res.data.token));
+        localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+        setLoginData({ username: '', password: '' });
+        let resultData = res;
+        setUser(res.data.user);
+        console.log('res.data.user:', res.data.user);
+        history.push('/dashboard');
+      }) /* fill in place holder!!! */
+      .then(() => setWelcome(resultData.message))
+
+      .catch(err => console.error(err));
+  };
+
+
   return (
     <Grid container component='main' className={classes.root}>
       <CssBaseline />
