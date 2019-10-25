@@ -23,6 +23,11 @@ import Box from '@material-ui/core/Box';
 //   </>
 // );
 
+// <Link to="/dashboard">Dashboard</Link>
+//       <Link to="/logout" >logout</Link>
+//       <Link to='/instructor'>Instructor</Link>
+// <Link to='/classlist/createclass'>create class</Link>
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 

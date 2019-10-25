@@ -60,6 +60,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
+  const { user, setUser, setWelcome } = props;
   const { history } = useReactRouter();
   const [loginData, setLoginData] = useState({
     username: '',
@@ -68,12 +69,9 @@ export default function Login(props) {
   const classes = useStyles();
 
   const changeHandler = e => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value
-    });
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
-
+  let resultData;
   const submitHandler = e => {
     e.preventDefault();
     Axios.post(
@@ -82,13 +80,16 @@ export default function Login(props) {
     )
       .then(res => {
         console.log(res, loginData);
-        localStorage.setItem('token', JSON.stringify(res.data.token));
-        setLoginData({
-          username: '',
-          password: ''
-        });
-        history.push('/Dashboard'); /* fill in place holder!!! */
-      })
+        localStorage.setItem('token', JSON.stringify(res.data.user.token));
+        localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+        setLoginData({ username: '', password: '' });
+        let resultData = res;
+        setUser(res.data.user);
+        console.log('res.data.user:', res.data.user);
+        history.push('/dashboard');
+      }) /* fill in place holder!!! */
+      .then(() => setWelcome(resultData.message))
+
       .catch(err => console.error(err));
   };
 

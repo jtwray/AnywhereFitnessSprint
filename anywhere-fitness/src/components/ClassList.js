@@ -1,8 +1,10 @@
-import React fomr 'react'
+import React from 'react'
+import Navigation from './Navigation';
 
 const ClassList=() =>
 return (
     <>
+    <Navigation/>
         <h2>Class List</h2>
         <div>
             <label>Sort BY:</label>{' '}
