@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Axios from 'axios';
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import useReactRouter from 'use-react-router';
 
@@ -60,27 +60,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
-  const { user, setUser, setWelcome } = props;
+  const { user, setUser, setWelcome, loginData,setLoginData,login} = props;
   const { history } = useReactRouter();
-  const [loginData, setLoginData] = useState({
-    username: '',
-    password: ''
-  });
+ 
   const classes = useStyles();
 
   const changeHandler = e => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
-  let resultData;
-  const submitHandler = e => {
-    e.preventDefault();
+  
+  const  submitHandler = e => {
+    e.preventDefault();   
+    try {login(loginData)}
+    finally {history.push('/dashboard')}
+}
 
-    Axios.post(
-      'https://lambda-anywhere-fitness.herokuapp.com/api/auth/login',
-      loginData
+ /**   
+  axios.post(
+    'https://lambda-anywhere-fitness.herokuapp.com/api/auth/login',
+    loginData
     )
-      .then(res => {
-        console.log(res, loginData);
+    .then(res => {
+      console.log(res, loginData);
         localStorage.setItem('token', JSON.stringify(res.data.token));
         localStorage.setItem('currentUser', JSON.stringify(res.data.user));
         setLoginData({ username: '', password: '' });
@@ -89,10 +90,12 @@ export default function Login(props) {
         console.log('res.data.user:', res.data.user);
         history.push('/dashboard');
       }) /* fill in place holder!!! */
-      .then(() => setWelcome(resultData.message))
-
+      /**.then(() => setWelcome(resultData.message))
+      
       .catch(err => console.error(err));
-  };
+      */
+      
+
 
 
   return (
@@ -167,4 +170,4 @@ export default function Login(props) {
       </Grid>
     </Grid>
   );
-}
+  }

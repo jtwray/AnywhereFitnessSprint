@@ -13,20 +13,6 @@ import HelpIcon from '@material-ui/icons/Help';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-// return (
-//   <>
-
-//     <Route path="/logout" component={Logout} />
-//     <Link to="/dashboard">Dashboard</Link>
-//     <Link to="/logout" >logout</Link>
-
-//   </>
-// );
-
-// <Link to="/dashboard">Dashboard</Link>
-//       <Link to="/logout" >logout</Link>
-//       <Link to='/instructor'>Instructor</Link>
-// <Link to='/classlist/createclass'>create class</Link>
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -67,7 +53,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Dashboard(props) {
-  console.log(props);
+ 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -105,7 +91,10 @@ export default function Dashboard(props) {
         <Link to='/instructor'>Instructor</Link>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Link to='/classlist/createclass'>create class</Link>
+        <Link to='/categorylist'>Allcategories</Link>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Link to='/classlist'>Allclass</Link>
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Link to='/logout'>logout</Link>

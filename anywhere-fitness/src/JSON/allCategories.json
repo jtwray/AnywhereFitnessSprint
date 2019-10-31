@@ -1,0 +1,32 @@
+{
+    "533d758b-549d-485d-9cf6-6054824c78b1": {
+        "desc": "Maecenas rhoncus aliquam lacus.",
+        "name": "Yoga",
+        "uuid": "533d758b-549d-485d-9cf6-6054824c78b1"
+    },
+    "66210b7e-70b5-402e-82cc-456301fb3f5d": {
+        "desc": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+        "name": "Marial Arts",
+        "uuid": "66210b7e-70b5-402e-82cc-456301fb3f5d"
+    },
+    "8c6ca5cc-ec9a-4a06-810e-38ddc7ae23a5": {
+        "desc": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
+        "name": "Pilates",
+        "uuid": "8c6ca5cc-ec9a-4a06-810e-38ddc7ae23a5"
+    },
+    "8faeb00c-0d6d-4572-aeda-59b2ffa7133a": {
+        "desc": "Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus.",
+        "name": "CrossFit",
+        "uuid": "8faeb00c-0d6d-4572-aeda-59b2ffa7133a"
+    },
+    "9b4fa838-d7f6-40d3-bb23-75b5b8db668e": {
+        "desc": "Duis ac nibh.",
+        "name": "Cardio",
+        "uuid": "9b4fa838-d7f6-40d3-bb23-75b5b8db668e"
+    },
+    "a3e5ad7f-fa52-4232-b522-0d2515596008": {
+        "desc": "Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.",
+        "name": "HIIT",
+        "uuid": "a3e5ad7f-fa52-4232-b522-0d2515596008"
+    }
+}

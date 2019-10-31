@@ -1,0 +1,16 @@
+{
+    "addr1": "75026 Ilene Avenue",
+    "category": "Pilates",
+    "city": "Las Vegas",
+    "classID": "ffeb3806-91af-4e63-9baa-531d2b318267",
+    "duration": 87,
+    "instructor": "181e130b-5909-4d7e-85b6-9add5ed5c41e",
+    "intensity": "light",
+    "metro": "Philadelphia",
+    "offerPunchcard": true,
+    "price": 16.99,
+    "startTime": "1572757808",
+    "state": "NV",
+    "title": "Pilates",
+    "zip": "89120"
+  }

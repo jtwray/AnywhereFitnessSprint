@@ -14,8 +14,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import axios from 'axios';
 import useReactRouter from 'use-react-router';
+import {axiosWithAuth} from './../utils/axiosWithAuth';
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
@@ -56,7 +61,15 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
-  }
+  },
+  button: {
+    display: 'block',
+    marginTop: theme.spacing(2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
 }));
 
 function Register(props) {
@@ -65,10 +78,8 @@ function Register(props) {
   const initialUserState = {
     username: '',
     password: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    roleId: 1
+    fullname: '',
+
   };
   const [newUser, setnewUser] = useState(initialUserState);
 
@@ -77,15 +88,16 @@ function Register(props) {
   };
 
   const register = userObject => {
-    axios
+    axiosWithAuth()
       .post(
-        `https://lambda-anywhere-fitness.herokuapp.com/api/auth/register/`,
+        `/register`,
         userObject
       )
       .then(res => {
         // const userInfo = JSON.stringify(res.data.user.token);
         console.log(res);
         localStorage.setItem('token', res.data.token);
+       
         history.push('/dashboard');
       })
       .catch(error => {
@@ -150,62 +162,15 @@ function Register(props) {
               margin='normal'
               required
               fullWidth
-              name='firstName'
-              label='firstName'
-              type='firstName'
-              id='firstName'
-              autoComplete='current-firstName'
+              name='fullname'
+              label='fullname'
+              type='fullname'
+              id='fullname'
+              autoComplete='current-fullname'
               onChange={handleChange}
-              value={newUser.firstName}
+              value={newUser.fullname}
             />
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              name='lastName'
-              label='lastName'
-              type='lastName'
-              id='lastName'
-              autoComplete='current-lastName'
-              onChange={handleChange}
-              value={newUser.lastName}
-            />
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              label='Email Address'
-              type='email'
-              id='email'
-              name='email'
-              autoComplete='email'
-              autoFocus
-              onChange={handleChange}
-              value={newUser.email}
-            />
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              name='roleId'
-              label='enter "1" for client or "2" for instructor'
-              type='roleId'
-              id='roleId'
-              autoComplete='current-roleId'
-              onChange={handleChange}
-              value={newUser.roleId}
-            />
-            <FormControlLabel
-              control={<Checkbox value={`${1}`} color='primary' />}
-              label='client'
-            />
-            <FormControlLabel
-              control={<Checkbox value={`${2}`} color='primary' />}
-              label='instructor'
-            />
+          
             <Button
               type='reset'
               fullWidth

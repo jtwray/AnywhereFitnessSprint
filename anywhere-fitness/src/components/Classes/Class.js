@@ -12,8 +12,8 @@ export  const Class=(props)=>{
     return(
         
         <h2>
-              <Navigation   />
-            class:{props.class.name}
+             
+            class:{props.class.title&&props.class.title}
             </h2>
         
     )
